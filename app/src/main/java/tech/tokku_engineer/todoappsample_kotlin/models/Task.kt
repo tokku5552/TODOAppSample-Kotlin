@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 
-
 data class Task(
     val id: Int,
     var title: String,
