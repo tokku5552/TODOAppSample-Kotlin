@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TODOAppSample-Kotlin</string>
+    <string name="title">title</string>
 </resources>
