@@ -3,6 +3,7 @@
     package="tech.tokku_engineer.todoappsample_kotlin">
 
     <application
+        android:name=".TodoAppSampleKotlinApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
