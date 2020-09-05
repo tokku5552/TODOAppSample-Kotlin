@@ -7,9 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import tech.tokku_engineer.todoappsample_kotlin.R
+import tech.tokku_engineer.todoappsample_kotlin.TodoItemAdapter
+import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoListFragmentBinding
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel
 
 class TodoListFragment : Fragment() {
+    private lateinit var todoListFragmentViewModel: TodoListFragmentViewModel
+    private lateinit var binding: TodoListFragmentBinding
+
+    //private val listAdapter = TodoItemAdapter()
+
 
     companion object {
         fun newInstance() = TodoListFragment()
