@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         todoListItemViewModel.todoItemClicked(todoItem)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
