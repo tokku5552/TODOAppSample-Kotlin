@@ -9,37 +9,23 @@ import kotlinx.android.synthetic.main.todo_list_fragment.*
 import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel
 import tech.tokku_engineer.todoappsample_kotlin.views.TodoItemDetailFragment
+import tech.tokku_engineer.todoappsample_kotlin.views.TodoListFragment
 
 /**
  * Fragmentの生成、画面遷移のみ行う
  */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var realm: Realm
-    private lateinit var todoListItemViewModel: TodoListFragmentViewModel
-
-    private val itemClickListener = { todoItem: TodoItem ->
-        todoListItemViewModel.todoItemClicked(todoItem)
-    }
+    private val fragmentManager = supportFragmentManager
+    private val fragmentTransaction = fragmentManager.beginTransaction()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //TODO TodoListFragmentを生成
+        val fragment = TodoListFragment()
+        fragmentTransaction.add(R.id.fragment_container_view_tag, fragment)
+        fragmentTransaction.commit()
 
-//        // Realmのインスタンス取得
-//        realm = Realm.getDefaultInstance()
-//        //　本来TodoListFragmentでリストアダプターをバインドすべき
-//        list.layoutManager = LinearLayoutManager(this)
-//        val todoItem = realm.where<TodoItem>().findAll()
-//        val adapter = TodoItemAdapter(todoItem, itemClickListener)
-//        list.adapter = adapter
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Realmインスタンスの破棄
-        realm.close()
     }
 }

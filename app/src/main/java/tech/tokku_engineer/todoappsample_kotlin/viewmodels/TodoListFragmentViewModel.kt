@@ -15,8 +15,7 @@ import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
  *
  */
 class TodoListFragmentViewModel : ViewModel() {
-    private lateinit var realm: Realm
-
+    
     lateinit var todoItem: MutableList<TodoItem>
     lateinit var title: MutableLiveData<String>
     fun todoItemClicked(todoItem: TodoItem) {
@@ -44,7 +43,7 @@ class TodoListFragmentViewModel : ViewModel() {
     }
 
     fun getTask() {
-       // realm = Realm.getDefaultInstance()
+        // realm = Realm.getDefaultInstance()
 //        list.layoutManager = LinearLayoutManager(this)
 //        val todoItem = realm.where<TodoItem>().findAll()
 //        val adapter = TodoItemAdapter(todoItem, itemClickListener)

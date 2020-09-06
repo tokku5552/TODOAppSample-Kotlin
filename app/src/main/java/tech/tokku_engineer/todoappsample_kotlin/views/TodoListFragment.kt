@@ -44,6 +44,9 @@ class TodoListFragment : Fragment() {
         return view
     }
 
+    /**
+     * ActivityCreatedでオブザーブの処理を行う
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //  viewModel = ViewModelProviders.of(this).get(TodoListFragmentViewModel::class.java)
@@ -52,6 +55,11 @@ class TodoListFragment : Fragment() {
         val todoItem = realm.where<TodoItem>().findAll()
         val adapter = TodoItemAdapter(todoItem, itemClickListener)
         binding.list.adapter = adapter
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
     }
 
 }
