@@ -26,13 +26,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Realmのインスタンス取得
-        realm = Realm.getDefaultInstance()
-        //　本来TodoListFragmentでリストアダプターをバインドすべき
-        list.layoutManager = LinearLayoutManager(this)
-        val todoItem = realm.where<TodoItem>().findAll()
-        val adapter = TodoItemAdapter(todoItem, itemClickListener)
-        list.adapter = adapter
+        //TODO TodoListFragmentを生成
+
+//        // Realmのインスタンス取得
+//        realm = Realm.getDefaultInstance()
+//        //　本来TodoListFragmentでリストアダプターをバインドすべき
+//        list.layoutManager = LinearLayoutManager(this)
+//        val todoItem = realm.where<TodoItem>().findAll()
+//        val adapter = TodoItemAdapter(todoItem, itemClickListener)
+//        list.adapter = adapter
     }
 
     override fun onDestroy() {
