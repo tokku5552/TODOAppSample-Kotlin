@@ -15,7 +15,7 @@ import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
  *
  */
 class TodoListFragmentViewModel : ViewModel() {
-    
+
     lateinit var todoItem: MutableList<TodoItem>
     lateinit var title: MutableLiveData<String>
     fun todoItemClicked(todoItem: TodoItem) {

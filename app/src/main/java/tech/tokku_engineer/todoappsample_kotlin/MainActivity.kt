@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fragment = TodoListFragment()
-        fragmentTransaction.add(R.id.fragment_container_view_tag, fragment)
+        //引数で渡すidはmain_activity.xml内のidである必要がある
+        fragmentTransaction.add(R.id.fragmentContainer, fragment)
         fragmentTransaction.commit()
 
     }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import io.realm.Realm
 import io.realm.kotlin.where
@@ -17,13 +18,15 @@ import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewM
 
 class TodoListFragment : Fragment() {
     private lateinit var realm: Realm
-    // realmの破棄処理を追加する
     private lateinit var binding: TodoListFragmentBinding
-    private val viewModel: TodoListFragmentViewModel =
-        ViewModelProviders.of(this).get(TodoListFragmentViewModel::class.java)
-    private lateinit var todoListItemViewModel: TodoListFragmentViewModel
+
+    //private val viewModel: TodoListFragmentViewModel =
+    //  ViewModelProviders.of(this).get(TodoListFragmentViewModel::class.java)
+    private val viewModel: TodoListFragmentViewModel by viewModels()
+
+    //private lateinit var todoListItemViewModel: TodoListFragmentViewModel
     private val itemClickListener = { todoItem: TodoItem ->
-        todoListItemViewModel.todoItemClicked(todoItem)
+        viewModel.todoItemClicked(todoItem)
     }
 
     companion object {
