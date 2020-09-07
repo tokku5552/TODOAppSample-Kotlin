@@ -12,7 +12,7 @@ import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 
 /**
  * TodoListFragmentの表示、データの更新を行う
- *
+ * Realmの初期化などはViewModelで行う
  */
 class TodoListFragmentViewModel : ViewModel() {
 

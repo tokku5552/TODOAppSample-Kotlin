@@ -16,15 +16,15 @@ import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoListFragmentBind
 import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel
 
+
 class TodoListFragment : Fragment() {
+    //realmのインスタンスをfragmentで保持したくない
+    //ViewModelに持たせるのが正解か
     private lateinit var realm: Realm
     private lateinit var binding: TodoListFragmentBinding
-
-    //private val viewModel: TodoListFragmentViewModel =
-    //  ViewModelProviders.of(this).get(TodoListFragmentViewModel::class.java)
     private val viewModel: TodoListFragmentViewModel by viewModels()
 
-    //private lateinit var todoListItemViewModel: TodoListFragmentViewModel
+    // TodoItemがクリックされた時のリスナー
     private val itemClickListener = { todoItem: TodoItem ->
         viewModel.todoItemClicked(todoItem)
     }
@@ -32,7 +32,6 @@ class TodoListFragment : Fragment() {
     companion object {
         fun newInstance() = TodoListFragment()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
