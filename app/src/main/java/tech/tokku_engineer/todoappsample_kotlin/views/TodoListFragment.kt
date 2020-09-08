@@ -29,6 +29,10 @@ class TodoListFragment : Fragment() {
         viewModel.todoItemClicked(todoItem)
     }
 
+    private val fabClickListener = {
+        viewModel.createTask()
+    }
+
     companion object {
         fun newInstance() = TodoListFragment()
     }
@@ -57,6 +61,11 @@ class TodoListFragment : Fragment() {
         val todoItem = realm.where<TodoItem>().findAll()
         val adapter = TodoItemAdapter(todoItem, itemClickListener)
         binding.list.adapter = adapter
+
+        binding.floatingActionButton.setOnClickListener { fabClickListener }
+
+        //一覧画面でアイテムがクリックされた時
+
     }
 
     override fun onDestroy() {

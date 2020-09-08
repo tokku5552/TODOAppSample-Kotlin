@@ -59,9 +59,3 @@ class TodoListFragmentViewModel : ViewModel() {
     }
 
 }
-
-data class FragmentNavigationRequest(
-    val fragment: Fragment,
-    val backStack: Boolean = false,
-    val tag: String? = null
-)
