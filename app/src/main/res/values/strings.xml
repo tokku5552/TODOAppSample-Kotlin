@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">TODOAppSample-Kotlin</string>
     <string name="title">title</string>
+    <string name="title_res">タイトル：</string>
+    <string name="edit_title_hint">タイトルを入力してください。</string>
+    <string name="detail_res">詳細：</string>
+    <string name="save_res">保存</string>
+    <string name="back_res">戻る</string>
+    <string name="example_date">2020/01/01</string>
+    <string name="update_res">更新日時：</string>
+    <string name="edit_detail_hint">詳細を入力してください。</string>
 </resources>
