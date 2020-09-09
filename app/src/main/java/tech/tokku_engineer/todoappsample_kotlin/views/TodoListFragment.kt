@@ -37,6 +37,9 @@ class TodoListFragment : Fragment() {
         fun newInstance() = TodoListFragment()
     }
 
+    /**
+     * Fragmentの表示とデータバインドの初期化のみ
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +49,6 @@ class TodoListFragment : Fragment() {
             viewmodel = viewModel
         }
         binding.lifecycleOwner = this.viewLifecycleOwner
-
         return view
     }
 

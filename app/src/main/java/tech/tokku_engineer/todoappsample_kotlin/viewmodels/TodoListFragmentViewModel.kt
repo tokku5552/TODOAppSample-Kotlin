@@ -15,7 +15,7 @@ import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
  * Realmの初期化などはViewModelで行う
  */
 class TodoListFragmentViewModel : ViewModel() {
-
+    private lateinit var realm: Realm
     lateinit var todoItem: MutableList<TodoItem>
     lateinit var title: MutableLiveData<String>
     fun todoItemClicked(todoItem: TodoItem) {
@@ -24,37 +24,30 @@ class TodoListFragmentViewModel : ViewModel() {
         // showFragment(TodoListFragment.newInstance())
     }
 
-//    val navigateToFragment: LiveData<Event<FragmentNavigationRequest>> get() = _navigateToFragment
-//    private val _navigateToFragment = MutableLiveData<Event<FragmentNavigationRequest>>()
-//
-//    /**
-//     * Convenience method used to swap the fragment shown in the main activity
-//     *
-//     * @param fragment the fragment to show
-//     * @param backStack if true, add this transaction to the back stack
-//     * @param tag the name to use for this fragment in the stack
-//     */
-//    fun showFragment(fragment: Fragment, backStack: Boolean = true, tag: String? = null) {
-//        _navigateToFragment.value = Event(FragmentNavigationRequest(fragment, backStack, tag))
-//    }
-
     fun createTask() {
 
     }
 
-    fun getTask() {
-        // realm = Realm.getDefaultInstance()
+    // 一覧の取得
+    // これはフラグメントがやればよい？
+//    fun getTaskList() {
+//        realm = Realm.getDefaultInstance()
 //        list.layoutManager = LinearLayoutManager(this)
 //        val todoItem = realm.where<TodoItem>().findAll()
 //        val adapter = TodoItemAdapter(todoItem, itemClickListener)
 //        list.adapter = adapter
-    }
+//    }
 
-    fun updateTask() {
+    // Todoの完了処理
+    fun doneTask() {
 
     }
 
     fun deleteTask() {
+
+    }
+
+    private fun getTaskFromId(id: Long) {
 
     }
 

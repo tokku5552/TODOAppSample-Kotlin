@@ -20,17 +20,10 @@ import tech.tokku_engineer.todoappsample_kotlin.views.TodoListFragment
  */
 class MainActivity : AppCompatActivity() {
 
-    //private val fragmentManager = supportFragmentManager
-    // private val fragmentTransaction = fragmentManager.beginTransaction()
     private val viewModel: MainActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        val fragment = TodoListFragment()
-//        //引数で渡すidはmain_activity.xml内のidである必要がある
-////        fragmentTransaction.add(R.id.fragmentContainer, fragment)
-////        fragmentTransaction.commit()
 
         // fragment生成のObserver
         viewModel.navigateToFragment.observe(this, Observer {

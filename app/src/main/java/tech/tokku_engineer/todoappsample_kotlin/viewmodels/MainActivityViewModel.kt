@@ -11,7 +11,6 @@ import tech.tokku_engineer.todoappsample_kotlin.utils.Event
  * Fragmentの生成、遷移を管理する
  */
 
-
 class MainActivityViewModel : ViewModel() {
 
     val navigateToFragment: LiveData<Event<FragmentNavigationRequest>> get() = _navigateToFragment
