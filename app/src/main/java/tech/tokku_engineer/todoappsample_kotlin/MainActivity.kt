@@ -36,5 +36,9 @@ class MainActivity : AppCompatActivity() {
                 transaction.commit()
             }
         })
+
+        var fragment = TodoListFragment.newInstance()
+        viewModel.showFragment(fragment)
+
     }
 }

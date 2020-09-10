@@ -1,7 +1,7 @@
 package tech.tokku_engineer.todoappsample_kotlin.views
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,23 +14,27 @@ import tech.tokku_engineer.todoappsample_kotlin.R
 import tech.tokku_engineer.todoappsample_kotlin.TodoItemAdapter
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoListFragmentBinding
 import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
+import tech.tokku_engineer.todoappsample_kotlin.viewmodels.MainActivityViewModel
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel
 
+private const val TAG = "TodoListFragment"
 
 class TodoListFragment : Fragment() {
     //realmのインスタンスをfragmentで保持したくない
     //ViewModelに持たせるのが正解か
     private lateinit var realm: Realm
     private lateinit var binding: TodoListFragmentBinding
-    private val viewModel: TodoListFragmentViewModel by viewModels()
+    private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private val todoListFragmentViewModel: TodoListFragmentViewModel by viewModels()
 
     // TodoItemがクリックされた時のリスナー
     private val itemClickListener = { todoItem: TodoItem ->
-        viewModel.todoItemClicked(todoItem)
+        mainActivityViewModel.todoItemClicked(todoItem)
     }
 
+    //FABが押された時
     private val fabClickListener = {
-        viewModel.createTask()
+        mainActivityViewModel.createTask()
     }
 
     companion object {
@@ -44,9 +48,10 @@ class TodoListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "called onCreateView")
         val view = inflater.inflate(R.layout.todo_list_fragment, container, false)
         binding = TodoListFragmentBinding.bind(view).apply {
-            viewmodel = viewModel
+            viewmodel = todoListFragmentViewModel
         }
         binding.lifecycleOwner = this.viewLifecycleOwner
         return view
@@ -57,6 +62,7 @@ class TodoListFragment : Fragment() {
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.d(TAG, "called onActivityCreated")
         //  viewModel = ViewModelProviders.of(this).get(TodoListFragmentViewModel::class.java)
         realm = Realm.getDefaultInstance()
 
@@ -64,7 +70,9 @@ class TodoListFragment : Fragment() {
         val adapter = TodoItemAdapter(todoItem, itemClickListener)
         binding.list.adapter = adapter
 
-        binding.floatingActionButton.setOnClickListener { fabClickListener }
+        binding.floatingActionButton.setOnClickListener {
+            Log.d(TAG,"FAB listener clicked")
+            mainActivityViewModel.createTask() }
 
         //一覧画面でアイテムがクリックされた時
 

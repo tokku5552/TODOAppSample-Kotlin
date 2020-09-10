@@ -18,15 +18,15 @@ class TodoListFragmentViewModel : ViewModel() {
     private lateinit var realm: Realm
     lateinit var todoItem: MutableList<TodoItem>
     lateinit var title: MutableLiveData<String>
-    fun todoItemClicked(todoItem: TodoItem) {
-        //TODO アイテムがクリックされた時の処理を書く
-        //playMedia(clickedItem, pauseAllowed = false)
-        // showFragment(TodoListFragment.newInstance())
-    }
+//    fun todoItemClicked(todoItem: TodoItem) {
 
-    fun createTask() {
-
-    }
+//        //playMedia(clickedItem, pauseAllowed = false)
+//        // showFragment(TodoListFragment.newInstance())
+//    }
+//
+//    fun createTask() {
+//
+//    }
 
     // 一覧の取得
     // これはフラグメントがやればよい？

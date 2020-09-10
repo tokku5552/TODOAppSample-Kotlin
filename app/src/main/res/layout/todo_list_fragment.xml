@@ -12,7 +12,6 @@
         <variable
             name="viewmodel"
             type="tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel" />
-
     </data>
 
     <FrameLayout
