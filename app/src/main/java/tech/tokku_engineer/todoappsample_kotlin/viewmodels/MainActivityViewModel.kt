@@ -20,7 +20,6 @@ class MainActivityViewModel : ViewModel() {
     val navigateToFragment: LiveData<Event<FragmentNavigationRequest>> get() = _navigateToFragment
     private val _navigateToFragment = MutableLiveData<Event<FragmentNavigationRequest>>()
 
-
     //FABが押された時
     //新規作成
     fun createTask() {
@@ -41,7 +40,6 @@ class MainActivityViewModel : ViewModel() {
         //playMedia(clickedItem, pauseAllowed = false)
         // showFragment(TodoListFragment.newInstance())
     }
-
 
 }
 

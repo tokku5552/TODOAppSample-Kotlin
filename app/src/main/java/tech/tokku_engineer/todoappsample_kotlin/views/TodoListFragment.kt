@@ -2,15 +2,12 @@ package tech.tokku_engineer.todoappsample_kotlin.views
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import io.realm.Realm
-import io.realm.kotlin.where
 import tech.tokku_engineer.todoappsample_kotlin.R
 import tech.tokku_engineer.todoappsample_kotlin.TodoItemAdapter
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoListFragmentBinding
@@ -21,9 +18,7 @@ import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewM
 private const val TAG = "TodoListFragment"
 
 class TodoListFragment : Fragment() {
-    //realmのインスタンスをfragmentで保持したくない
-    //ViewModelに持たせるのが正解か
-    //private lateinit var realm: Realm
+
     private lateinit var binding: TodoListFragmentBinding
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     private val todoListFragmentViewModel: TodoListFragmentViewModel by viewModels()
@@ -31,11 +26,6 @@ class TodoListFragment : Fragment() {
     // TodoItemがクリックされた時のリスナー
     private val itemClickListener = { todoItem: TodoItem ->
         mainActivityViewModel.todoItemClicked(todoItem)
-    }
-
-    //FABが押された時
-    private val fabClickListener = {
-        mainActivityViewModel.createTask()
     }
 
     companion object {
@@ -64,10 +54,7 @@ class TodoListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "called onActivityCreated")
-        //realm = Realm.getDefaultInstance()
 
-        //val todoItem = realm.where<TodoItem>().findAll()
-        //val adapter = TodoItemAdapter(todoItem, itemClickListener)
         binding.list.adapter =
             TodoItemAdapter(todoListFragmentViewModel, itemClickListener)
 
