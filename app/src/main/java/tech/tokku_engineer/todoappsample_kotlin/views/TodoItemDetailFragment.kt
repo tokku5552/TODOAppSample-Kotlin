@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import tech.tokku_engineer.todoappsample_kotlin.R
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoItemDetailFragmentBinding
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoListFragmentBinding
+import tech.tokku_engineer.todoappsample_kotlin.viewmodels.MainActivityViewModel
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoItemDetailFragmentViewModel
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel
 
@@ -18,6 +20,7 @@ private const val TAG = "TodoItemDetailFragment"
 
 class TodoItemDetailFragment : Fragment() {
     private lateinit var binding: TodoItemDetailFragmentBinding
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     private val todoItemDetailFragmentViewModel: TodoItemDetailFragmentViewModel by viewModels()
 
     companion object {

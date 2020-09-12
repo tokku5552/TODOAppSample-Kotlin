@@ -1,5 +1,6 @@
 package tech.tokku_engineer.todoappsample_kotlin.viewmodels
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +13,7 @@ import tech.tokku_engineer.todoappsample_kotlin.views.TodoItemDetailFragment
 /**
  * Fragmentの生成、遷移を管理する
  */
+private const val TAG = "MainActivityViewModel"
 
 class MainActivityViewModel : ViewModel() {
 
@@ -22,6 +24,7 @@ class MainActivityViewModel : ViewModel() {
     //FABが押された時
     //新規作成
     fun createTask() {
+        Log.d(TAG, "createTask")
         showFragment(TodoItemDetailFragment.newInstance())
     }
 
@@ -29,7 +32,6 @@ class MainActivityViewModel : ViewModel() {
     //一覧画面でアイテムがクリックされた時の画面遷移
 
     //詳細画面で保存が押された時の画面遷移
-
     fun showFragment(fragment: Fragment, backStack: Boolean = true, tag: String? = null) {
         _navigateToFragment.value = Event(FragmentNavigationRequest(fragment, backStack, tag))
     }
