@@ -1,20 +1,15 @@
 package tech.tokku_engineer.todoappsample_kotlin.views
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import tech.tokku_engineer.todoappsample_kotlin.R
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoItemDetailFragmentBinding
-import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoListFragmentBinding
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.MainActivityViewModel
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoItemDetailFragmentViewModel
-import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel
 
 private const val TAG = "TodoItemDetailFragment"
 
@@ -44,6 +39,22 @@ class TodoItemDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "called onActivityCreated")
 
+        binding.buttonLeft.setOnClickListener {
+            todoItemDetailFragmentViewModel.createNewTask(
+                binding.editTitle.text.toString(),
+                binding.editDetail.text.toString()
+            )
+            closeFragment()
+        }
+    }
+
+    private fun closeFragment() {
+        val mainActivity = activity
+        if (mainActivity != null) {
+            mainActivity.supportFragmentManager.popBackStack()
+        } else {
+            mainActivityViewModel.createTask()
+        }
     }
 
 }

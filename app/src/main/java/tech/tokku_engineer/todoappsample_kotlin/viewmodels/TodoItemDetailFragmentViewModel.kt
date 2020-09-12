@@ -1,5 +1,6 @@
 package tech.tokku_engineer.todoappsample_kotlin.viewmodels
 
+import android.text.Editable
 import androidx.lifecycle.ViewModel
 import io.realm.Realm
 import io.realm.kotlin.createObject
