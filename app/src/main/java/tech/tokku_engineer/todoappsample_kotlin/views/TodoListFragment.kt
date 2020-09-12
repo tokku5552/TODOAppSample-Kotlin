@@ -23,7 +23,7 @@ private const val TAG = "TodoListFragment"
 class TodoListFragment : Fragment() {
     //realmのインスタンスをfragmentで保持したくない
     //ViewModelに持たせるのが正解か
-    private lateinit var realm: Realm
+    //private lateinit var realm: Realm
     private lateinit var binding: TodoListFragmentBinding
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     private val todoListFragmentViewModel: TodoListFragmentViewModel by viewModels()
@@ -64,24 +64,27 @@ class TodoListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "called onActivityCreated")
-        //  viewModel = ViewModelProviders.of(this).get(TodoListFragmentViewModel::class.java)
-        realm = Realm.getDefaultInstance()
+        //realm = Realm.getDefaultInstance()
 
-        val todoItem = realm.where<TodoItem>().findAll()
-        val adapter = TodoItemAdapter(todoItem, itemClickListener)
-        binding.list.adapter = adapter
+        //val todoItem = realm.where<TodoItem>().findAll()
+        //val adapter = TodoItemAdapter(todoItem, itemClickListener)
+        binding.list.adapter =
+            TodoItemAdapter(todoListFragmentViewModel, itemClickListener)
 
         binding.floatingActionButton.setOnClickListener {
-            Log.d(TAG,"FAB listener clicked")
-            mainActivityViewModel.createTask() }
+            Log.d(TAG, "FAB listener clicked")
+            mainActivityViewModel.createTask()
+        }
 
         //一覧画面でアイテムがクリックされた時
 
+        //画面の更新
+        todoListFragmentViewModel.updateUI()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        realm.close()
+        //realm.close()
     }
 
 }

@@ -12,6 +12,9 @@
         <variable
             name="viewmodel"
             type="tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel" />
+        <variable
+            name="todoitem"
+            type="tech.tokku_engineer.todoappsample_kotlin.models.TodoItem" />
 
     </data>
 
@@ -30,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@{viewmodel.title}"
+            android:text="@{todoitem.title}"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -4,17 +4,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
 import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoItemFragmentBinding
+import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel
 
 class TodoItemAdapter(
-    data: OrderedRealmCollection<TodoItem>,
+    viewModel: TodoListFragmentViewModel,
     private val itemClickListener: (TodoItem) -> Unit
 ) :
-    RealmRecyclerViewAdapter<TodoItem, TodoItemAdapter.TodoItemViewHolder>(data, true) {
+    RealmRecyclerViewAdapter<TodoItem, TodoItemAdapter.TodoItemViewHolder>(viewModel.data, true) {
 
     init {
         setHasStableIds(true)
@@ -54,4 +56,20 @@ class TodoItemAdapter(
         return getItem(position)?.id ?: 0
     }
 
+    fun update(todoList: List<TodoItem>) {
+
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("app:items")
+        fun RecyclerView.bindItems(items: List<TodoItem>?) {
+            if (items == null) {
+                return
+            } else {
+                val adapter = adapter as TodoItemAdapter
+                adapter.update(items)
+            }
+        }
+    }
 }

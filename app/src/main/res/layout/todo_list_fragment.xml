@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            app:items="@{viewmodel.todoItems}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:context="tech.tokku_engineer.todoappsample_kotlin.views.TodoListFragment"
             tools:listitem="@layout/todo_item_fragment">

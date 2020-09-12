@@ -1,10 +1,13 @@
 package tech.tokku_engineer.todoappsample_kotlin.viewmodels
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.realm.OrderedRealmCollection
 import io.realm.Realm
+import io.realm.RealmResults
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.todo_list_fragment.*
 import tech.tokku_engineer.todoappsample_kotlin.TodoItemAdapter
@@ -16,8 +19,20 @@ import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
  */
 class TodoListFragmentViewModel : ViewModel() {
     private lateinit var realm: Realm
-    lateinit var todoItem: MutableList<TodoItem>
+    lateinit var todoItems: MutableList<TodoItem>
     lateinit var title: MutableLiveData<String>
+    lateinit var data: OrderedRealmCollection<TodoItem>
+
+    init {
+        updateUI()
+    }
+
+    fun updateUI() {
+        realm = Realm.getDefaultInstance()
+        todoItems = realm.where<TodoItem>().findAll()
+        data = (todoItems as RealmResults<TodoItem>?)!!
+    }
+
 //    fun todoItemClicked(todoItem: TodoItem) {
 
 //        //playMedia(clickedItem, pauseAllowed = false)
