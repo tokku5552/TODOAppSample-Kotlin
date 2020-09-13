@@ -57,4 +57,8 @@ class TodoItemDetailFragment : Fragment() {
         }
     }
 
+    private fun showNewTask(){
+
+    }
+
 }

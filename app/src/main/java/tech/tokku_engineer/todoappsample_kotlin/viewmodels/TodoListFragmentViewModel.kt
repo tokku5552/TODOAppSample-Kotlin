@@ -33,6 +33,9 @@ class TodoListFragmentViewModel : ViewModel() {
         data = (todoItems as RealmResults<TodoItem>?)!!
     }
 
+    fun openTodoItem(){
+
+    }
 //    fun todoItemClicked(todoItem: TodoItem) {
 
 //        //playMedia(clickedItem, pauseAllowed = false)

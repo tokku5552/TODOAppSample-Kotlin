@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 import tech.tokku_engineer.todoappsample_kotlin.utils.Event
 import tech.tokku_engineer.todoappsample_kotlin.views.TodoItemDetailFragment
+import java.text.FieldPosition
 
 
 /**
@@ -36,9 +37,8 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun todoItemClicked(todoItem: TodoItem) {
-        //TODO アイテムがクリックされた時の処理を書く
-        //playMedia(clickedItem, pauseAllowed = false)
-        // showFragment(TodoListFragment.newInstance())
+        Log.d(TAG, "called todoItemClicked")
+        //todoItemを持ってきて、詳細画面を開く
     }
 
 }

@@ -12,6 +12,7 @@
         <variable
             name="viewmodel"
             type="tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoListFragmentViewModel" />
+
         <variable
             name="todoitem"
             type="tech.tokku_engineer.todoappsample_kotlin.models.TodoItem" />
