@@ -10,7 +10,7 @@ A sample Todo App with MVVM
  - DataBinding
  
 # License
-Copyright (c) 2020 tokku5552
-This software is released under the MIT License.
+Copyright (c) 2020 tokku5552  
+This software is released under the MIT License.  
 [https://opensource.org/licenses/mit-license.php](https://opensource.org/licenses/mit-license.php)
  
