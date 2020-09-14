@@ -18,6 +18,7 @@ class TodoItemAdapter(
 ) :
     RealmRecyclerViewAdapter<TodoItem, TodoItemAdapter.TodoItemViewHolder>(viewModel.data, true) {
     private lateinit var listener: OnItemClickListener
+    private lateinit var checkboxListener: OnCheckBoxClickListener
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
@@ -27,6 +28,14 @@ class TodoItemAdapter(
         fun onItemClickListener(todoItem: TodoItem, position: Int)
     }
 
+    fun setOnCheckBoxClickListener(checkBoxListener: OnCheckBoxClickListener) {
+        this.checkboxListener = checkBoxListener
+    }
+
+    interface OnCheckBoxClickListener {
+        fun onCheckBoxClickListener(todoItem: TodoItem, position: Int)
+    }
+
     init {
         setHasStableIds(true)
     }
@@ -34,16 +43,13 @@ class TodoItemAdapter(
     // ビューを保持するためのもの
     class TodoItemViewHolder(
         binding: TodoItemFragmentBinding,
-        private var listener: OnItemClickListener
+        private var listener: OnItemClickListener,
+        private var checkboxListener: OnCheckBoxClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private var mBinding: TodoItemFragmentBinding
+        private var mBinding: TodoItemFragmentBinding = binding
         var title: TextView = binding.title
         var item: TodoItem? = null
-
-        init {
-            mBinding = binding
-        }
 
         fun bindTo(todoItem: TodoItem, position: Int) {
             Log.d(TAG, "called bindTo")
@@ -51,8 +57,11 @@ class TodoItemAdapter(
             mBinding.checkBox.isChecked = todoItem.isDone
             mBinding.root.setOnClickListener {
                 Log.d(TAG, "called bindTo click listener")
-                Log.d(TAG, "${todoItem.title} ${position}")
                 listener.onItemClickListener(todoItem, position)
+            }
+            mBinding.checkBox.setOnClickListener {
+                Log.d(TAG, "called bindTo click checkBoxListener")
+                checkboxListener.onCheckBoxClickListener(todoItem, position)
             }
             mBinding.executePendingBindings()
         }
@@ -64,9 +73,10 @@ class TodoItemAdapter(
     ): TodoItemViewHolder {
         Log.d(TAG, "called onCreateViewHolder")
         setOnItemClickListener(listener)
+        setOnCheckBoxClickListener(checkboxListener)
         val inflater = LayoutInflater.from(parent.context)
         val binding = TodoItemFragmentBinding.inflate(inflater, parent, false)
-        return TodoItemViewHolder(binding, listener)
+        return TodoItemViewHolder(binding, listener, checkboxListener)
     }
 
     override fun onBindViewHolder(holder: TodoItemViewHolder, position: Int) {

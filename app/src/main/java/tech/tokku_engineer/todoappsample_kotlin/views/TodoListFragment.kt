@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import kotlinx.android.synthetic.main.todo_item_fragment.view.*
 import tech.tokku_engineer.todoappsample_kotlin.R
 import tech.tokku_engineer.todoappsample_kotlin.TodoItemAdapter
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoListFragmentBinding
@@ -57,6 +56,13 @@ class TodoListFragment : Fragment() {
             override fun onItemClickListener(todoItem: TodoItem, position: Int) {
                 Log.d(TAG, "called onItemClickListener")
                 mainActivityViewModel.todoItemClicked(todoItem)
+            }
+        })
+        adapter.setOnCheckBoxClickListener(object : TodoItemAdapter.OnCheckBoxClickListener {
+            override fun onCheckBoxClickListener(todoItem: TodoItem, position: Int) {
+                Log.d(TAG, "called onCheckBoxClickListener")
+                todoListFragmentViewModel.isDoneStateChange(todoItem.id)
+                todoListFragmentViewModel.updateUI()
             }
         })
 
