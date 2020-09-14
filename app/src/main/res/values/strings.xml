@@ -9,4 +9,5 @@
     <string name="example_date">2020/01/01</string>
     <string name="update_res">更新日時：</string>
     <string name="edit_detail_hint">詳細を入力してください。</string>
+    <string name="createDate_res">作成日時：</string>
 </resources>

@@ -5,9 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.*
 import tech.tokku_engineer.todoappsample_kotlin.R
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoItemDetailFragmentBinding
+import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.MainActivityViewModel
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoItemDetailFragmentViewModel
 
@@ -38,13 +41,17 @@ class TodoItemDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "called onActivityCreated")
-
-        binding.buttonLeft.setOnClickListener {
-            todoItemDetailFragmentViewModel.createNewTask(
-                binding.editTitle.text.toString(),
-                binding.editDetail.text.toString()
-            )
+        //戻るボタンは共通なので先にセットする
+        binding.buttonRight.setOnClickListener {
             closeFragment()
+        }
+        //mainActivityViewModelのselectedItemがnullだったら新規作成画面
+        //値がセットされていたら各値をセットする
+        val selectedItem = mainActivityViewModel.selectedItem
+        if (selectedItem == null) {
+            showNewTask()
+        } else {
+            showTask(selectedItem)
         }
     }
 
@@ -57,8 +64,38 @@ class TodoItemDetailFragment : Fragment() {
         }
     }
 
-    private fun showNewTask(){
-
+    //新規作成画面の表示
+    private fun showNewTask() {
+        binding.buttonLeft.setOnClickListener {
+            todoItemDetailFragmentViewModel.createNewTask(
+                binding.editTitle.text.toString(),
+                binding.editDetail.text.toString()
+            )
+            closeFragment()
+        }
     }
 
+    //詳細画面の表示
+    private fun showTask(todoItem: TodoItem) {
+        binding.editTitle.setText(todoItem.title, TextView.BufferType.EDITABLE)
+        binding.editDetail.setText(todoItem.detail, TextView.BufferType.EDITABLE)
+        binding.editCreate.text = todoItem.createDate.toString()
+        binding.createDate.isVisible = true
+        binding.editCreate.isVisible = true
+        if (todoItem.updateDate != null) {
+            binding.editUpdate.text = todoItem.updateDate.toString()
+            binding.editUpdate.isVisible = true
+            binding.update.isVisible = true
+        }
+        binding.buttonLeft.text = "更新"
+        binding.buttonLeft.setOnClickListener {
+            todoItemDetailFragmentViewModel.updateTask(
+                todoItem.id,
+                binding.editTitle.text.toString(),
+                binding.editDetail.text.toString()
+            )
+            closeFragment()
+        }
+
+    }
 }

@@ -1,6 +1,5 @@
 package tech.tokku_engineer.todoappsample_kotlin.viewmodels
 
-import android.text.Editable
 import androidx.lifecycle.ViewModel
 import io.realm.Realm
 import io.realm.kotlin.createObject
@@ -10,6 +9,7 @@ import java.util.*
 
 class TodoItemDetailFragmentViewModel : ViewModel() {
     private var realm = Realm.getDefaultInstance()
+    var id: Int = 0
 
     // TodoItemを新規作成する
     fun createNewTask(title: String, detail: String?) {
@@ -22,19 +22,17 @@ class TodoItemDetailFragmentViewModel : ViewModel() {
             todoItem.createDate = Date()
         }
         //通知かなんかだす
-
-    }
-
-    fun getTask() {
-        // realm = Realm.getDefaultInstance()
-//        list.layoutManager = LinearLayoutManager(this)
-//        val todoItem = realm.where<TodoItem>().findAll()
-//        val adapter = TodoItemAdapter(todoItem, itemClickListener)
-//        list.adapter = adapter
     }
 
     // TodoItemの内容を更新する
-    fun updateTask() {
+    fun updateTask(id: Long, title: String, detail: String?) {
+        realm.executeTransaction { db: Realm ->
+            val todoItem = db.where<TodoItem>()
+                .equalTo("id", id).findFirst()
+            todoItem?.title = title
+            todoItem?.detail = detail ?: ""
+            todoItem?.updateDate = Date()
+        }
 
     }
 

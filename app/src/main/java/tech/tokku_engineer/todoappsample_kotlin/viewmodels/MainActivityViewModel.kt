@@ -18,6 +18,7 @@ private const val TAG = "MainActivityViewModel"
 
 class MainActivityViewModel : ViewModel() {
 
+    var selectedItem: TodoItem? = null
     val navigateToFragment: LiveData<Event<FragmentNavigationRequest>> get() = _navigateToFragment
     private val _navigateToFragment = MutableLiveData<Event<FragmentNavigationRequest>>()
 
@@ -25,6 +26,7 @@ class MainActivityViewModel : ViewModel() {
     //新規作成
     fun createTask() {
         Log.d(TAG, "createTask")
+        selectedItem = null
         showFragment(TodoItemDetailFragment.newInstance())
     }
 
@@ -36,9 +38,11 @@ class MainActivityViewModel : ViewModel() {
         _navigateToFragment.value = Event(FragmentNavigationRequest(fragment, backStack, tag))
     }
 
+    //LiveDataに選択されたTodoItemを保存してから詳細画面へ遷移
     fun todoItemClicked(todoItem: TodoItem) {
         Log.d(TAG, "called todoItemClicked")
-        //todoItemを持ってきて、詳細画面を開く
+        selectedItem = todoItem
+        showFragment(TodoItemDetailFragment.newInstance())
     }
 
 }

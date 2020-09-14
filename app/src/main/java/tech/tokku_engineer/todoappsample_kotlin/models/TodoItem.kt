@@ -12,9 +12,4 @@ open class TodoItem : RealmObject() {
     var createDate: Date = Date()
     var updateDate: Date = Date()
     var isDone: Boolean = false
-    var isDelete: Boolean = false
-    fun updateDate() {
-        updateDate = Date()
-    }
-
 }
