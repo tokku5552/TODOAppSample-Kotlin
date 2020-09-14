@@ -11,6 +11,8 @@ import androidx.fragment.app.*
 import tech.tokku_engineer.todoappsample_kotlin.R
 import tech.tokku_engineer.todoappsample_kotlin.databinding.TodoItemDetailFragmentBinding
 import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
+import tech.tokku_engineer.todoappsample_kotlin.utils.toDate
+import tech.tokku_engineer.todoappsample_kotlin.utils.toString
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.MainActivityViewModel
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.TodoItemDetailFragmentViewModel
 
@@ -79,11 +81,11 @@ class TodoItemDetailFragment : Fragment() {
     private fun showTask(todoItem: TodoItem) {
         binding.editTitle.setText(todoItem.title, TextView.BufferType.EDITABLE)
         binding.editDetail.setText(todoItem.detail, TextView.BufferType.EDITABLE)
-        binding.editCreate.text = todoItem.createDate.toString()
+        binding.editCreate.text = todoItem.createDate.toString("yyyy/MM/dd")
         binding.createDate.isVisible = true
         binding.editCreate.isVisible = true
-        if (todoItem.updateDate != null) {
-            binding.editUpdate.text = todoItem.updateDate.toString()
+        if (todoItem.createDate != todoItem.updateDate) {
+            binding.editUpdate.text = todoItem.updateDate.toString("yyyy/MM/dd")
             binding.editUpdate.isVisible = true
             binding.update.isVisible = true
         }
