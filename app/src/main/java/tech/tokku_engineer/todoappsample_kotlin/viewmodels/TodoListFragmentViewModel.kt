@@ -1,16 +1,11 @@
 package tech.tokku_engineer.todoappsample_kotlin.viewmodels
 
-import android.util.Log
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
 import io.realm.OrderedRealmCollection
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.kotlin.where
-import kotlinx.android.synthetic.main.todo_list_fragment.*
-import tech.tokku_engineer.todoappsample_kotlin.TodoItemAdapter
 import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 
 /**
@@ -36,25 +31,6 @@ class TodoListFragmentViewModel : ViewModel() {
     fun openTodoItem(){
 
     }
-//    fun todoItemClicked(todoItem: TodoItem) {
-
-//        //playMedia(clickedItem, pauseAllowed = false)
-//        // showFragment(TodoListFragment.newInstance())
-//    }
-//
-//    fun createTask() {
-//
-//    }
-
-    // 一覧の取得
-    // これはフラグメントがやればよい？
-//    fun getTaskList() {
-//        realm = Realm.getDefaultInstance()
-//        list.layoutManager = LinearLayoutManager(this)
-//        val todoItem = realm.where<TodoItem>().findAll()
-//        val adapter = TodoItemAdapter(todoItem, itemClickListener)
-//        list.adapter = adapter
-//    }
 
     // Todoの完了処理
     fun doneTask() {

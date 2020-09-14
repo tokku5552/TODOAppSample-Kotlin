@@ -33,7 +33,7 @@ class TodoItemDetailFragmentViewModel : ViewModel() {
             todoItem?.detail = detail ?: ""
             todoItem?.updateDate = Date()
         }
-
+        //通知かなんかだす
     }
 
     //TodoItemを削除する

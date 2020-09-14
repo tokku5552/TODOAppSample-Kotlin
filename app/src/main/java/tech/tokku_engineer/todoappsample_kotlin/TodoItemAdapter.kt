@@ -19,7 +19,6 @@ class TodoItemAdapter(
     RealmRecyclerViewAdapter<TodoItem, TodoItemAdapter.TodoItemViewHolder>(viewModel.data, true) {
     private lateinit var listener: OnItemClickListener
 
-    //private lateinit var listener: OnItemClickListener
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
@@ -43,9 +42,6 @@ class TodoItemAdapter(
         var item: TodoItem? = null
 
         init {
-//            binding.checkBox.setOnClickListener {
-//                item?.let { itemClickListener(it) }
-//            }
             mBinding = binding
         }
 

@@ -24,11 +24,6 @@ class TodoListFragment : Fragment() {
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     private val todoListFragmentViewModel: TodoListFragmentViewModel by viewModels()
 
-    // TodoItemがクリックされた時のリスナー
-    private val itemClickListener = { todoItem: TodoItem ->
-        mainActivityViewModel.todoItemClicked(todoItem)
-    }
-
     companion object {
         fun newInstance() = TodoListFragment()
     }
@@ -64,9 +59,6 @@ class TodoListFragment : Fragment() {
                 mainActivityViewModel.todoItemClicked(todoItem)
             }
         })
-//        binding.list.ConstraintLayout.setOnClickListener {
-//            Log.d(TAG, "item clicked")
-//        }
 
         binding.floatingActionButton.setOnClickListener {
             Log.d(TAG, "FAB listener clicked")
@@ -77,11 +69,6 @@ class TodoListFragment : Fragment() {
 
         //画面の更新
         todoListFragmentViewModel.updateUI()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //realm.close()
     }
 
 }

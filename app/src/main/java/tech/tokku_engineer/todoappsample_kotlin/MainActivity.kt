@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        realmMigration()
+
         // fragment生成のObserver
         viewModel.navigateToFragment.observe(this, Observer {
             it?.getContentIfNotHandled()?.let { fragmentRequest ->
@@ -33,17 +33,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        var fragment = TodoListFragment.newInstance()
+        val fragment = TodoListFragment.newInstance()
         viewModel.showFragment(fragment)
     }
 
-    //スキーマ変更時のマイグレーション処理
-    private fun realmMigration() {
-        Realm.init(this)
-        val realmConfig = RealmConfiguration.Builder()
-            .schemaVersion(1L)
-            .migration(MyRealmMigration())
-            .build()
-        Realm.setDefaultConfiguration(realmConfig)
-    }
+
 }
