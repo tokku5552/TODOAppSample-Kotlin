@@ -58,6 +58,15 @@ class TodoListFragment : Fragment() {
                 mainActivityViewModel.todoItemClicked(todoItem)
             }
         })
+        adapter.setOnLongItemClickListener(object : TodoItemAdapter.OnLongItemClickListener {
+            override fun onLongItemClickListener(todoItem: TodoItem, position: Int): Boolean {
+                Log.d(TAG, "called onLongItemClickListener")
+                todoListFragmentViewModel.deleteTask(todoItem)
+                return true
+            }
+        })
+
+
         adapter.setOnCheckBoxClickListener(object : TodoItemAdapter.OnCheckBoxClickListener {
             override fun onCheckBoxClickListener(todoItem: TodoItem, position: Int) {
                 Log.d(TAG, "called onCheckBoxClickListener")

@@ -38,8 +38,14 @@ class TodoListFragmentViewModel : ViewModel() {
         }
     }
 
-    fun deleteTask() {
-
+    // タスクを削除する
+    fun deleteTask(todoItem: TodoItem) {
+        realm.executeTransaction { db: Realm ->
+            val todoItem = db.where<TodoItem>()
+                .equalTo("id", todoItem.id)
+                .findFirst()
+                ?.deleteFromRealm()
+        }
     }
 
 }

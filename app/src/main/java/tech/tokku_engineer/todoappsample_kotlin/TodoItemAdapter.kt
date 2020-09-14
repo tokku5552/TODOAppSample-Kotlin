@@ -18,6 +18,7 @@ class TodoItemAdapter(
 ) :
     RealmRecyclerViewAdapter<TodoItem, TodoItemAdapter.TodoItemViewHolder>(viewModel.data, true) {
     private lateinit var listener: OnItemClickListener
+    private lateinit var longListener: OnLongItemClickListener
     private lateinit var checkboxListener: OnCheckBoxClickListener
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -26,6 +27,14 @@ class TodoItemAdapter(
 
     interface OnItemClickListener {
         fun onItemClickListener(todoItem: TodoItem, position: Int)
+    }
+
+    fun setOnLongItemClickListener(longListener: OnLongItemClickListener) {
+        this.longListener = longListener
+    }
+
+    interface OnLongItemClickListener {
+        fun onLongItemClickListener(todoItem: TodoItem, position: Int): Boolean
     }
 
     fun setOnCheckBoxClickListener(checkBoxListener: OnCheckBoxClickListener) {
@@ -44,12 +53,12 @@ class TodoItemAdapter(
     class TodoItemViewHolder(
         binding: TodoItemFragmentBinding,
         private var listener: OnItemClickListener,
+        private var longListener: OnLongItemClickListener,
         private var checkboxListener: OnCheckBoxClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private var mBinding: TodoItemFragmentBinding = binding
         var title: TextView = binding.title
-        var item: TodoItem? = null
 
         fun bindTo(todoItem: TodoItem, position: Int) {
             Log.d(TAG, "called bindTo")
@@ -58,6 +67,10 @@ class TodoItemAdapter(
             mBinding.root.setOnClickListener {
                 Log.d(TAG, "called bindTo click listener")
                 listener.onItemClickListener(todoItem, position)
+            }
+            mBinding.root.setOnLongClickListener {
+                Log.d(TAG, "called bindTo long click listener")
+                longListener.onLongItemClickListener(todoItem, position)
             }
             mBinding.checkBox.setOnClickListener {
                 Log.d(TAG, "called bindTo click checkBoxListener")
@@ -76,7 +89,7 @@ class TodoItemAdapter(
         setOnCheckBoxClickListener(checkboxListener)
         val inflater = LayoutInflater.from(parent.context)
         val binding = TodoItemFragmentBinding.inflate(inflater, parent, false)
-        return TodoItemViewHolder(binding, listener, checkboxListener)
+        return TodoItemViewHolder(binding, listener, longListener, checkboxListener)
     }
 
     override fun onBindViewHolder(holder: TodoItemViewHolder, position: Int) {
