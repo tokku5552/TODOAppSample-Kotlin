@@ -1,3 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+
+    ~ Copyright (c) 2020 tokku5552
+    ~
+    ~ This software is released under the MIT License.
+    ~ https://opensource.org/licenses/mit-license.php
+    ~
+    -->
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

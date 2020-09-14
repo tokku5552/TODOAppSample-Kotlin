@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+
+    ~ Copyright (c) 2020 tokku5552
+    ~
+    ~ This software is released under the MIT License.
+    ~ https://opensource.org/licenses/mit-license.php
+    ~
+    -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -26,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:context="tech.tokku_engineer.todoappsample_kotlin.views.TodoListFragment"
             tools:listitem="@layout/todo_item_fragment">

@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+
+    ~ Copyright (c) 2020 tokku5552
+    ~
+    ~ This software is released under the MIT License.
+    ~ https://opensource.org/licenses/mit-license.php
+    ~
+    -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentContainer"
