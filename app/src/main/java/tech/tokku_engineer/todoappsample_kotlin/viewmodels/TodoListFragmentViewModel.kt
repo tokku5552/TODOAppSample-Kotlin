@@ -19,7 +19,7 @@ import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
  */
 class TodoListFragmentViewModel : ViewModel() {
     private lateinit var realm: Realm
-    lateinit var todoItems: MutableList<TodoItem>
+    private lateinit var todoItems: MutableList<TodoItem>
     lateinit var title: MutableLiveData<String>
     lateinit var data: OrderedRealmCollection<TodoItem>
 

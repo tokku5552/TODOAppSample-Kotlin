@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import tech.tokku_engineer.todoappsample_kotlin.utils.MyRealmMigration
 import tech.tokku_engineer.todoappsample_kotlin.viewmodels.MainActivityViewModel
 import tech.tokku_engineer.todoappsample_kotlin.views.TodoListFragment
 
@@ -17,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        realmMigration()
         // fragment生成のObserver
         viewModel.navigateToFragment.observe(this, Observer {
             it?.getContentIfNotHandled()?.let { fragmentRequest ->
@@ -31,6 +35,15 @@ class MainActivity : AppCompatActivity() {
 
         var fragment = TodoListFragment.newInstance()
         viewModel.showFragment(fragment)
+    }
 
+    //スキーマ変更時のマイグレーション処理
+    private fun realmMigration() {
+        Realm.init(this)
+        val realmConfig = RealmConfiguration.Builder()
+            .schemaVersion(1L)
+            .migration(MyRealmMigration())
+            .build()
+        Realm.setDefaultConfiguration(realmConfig)
     }
 }
