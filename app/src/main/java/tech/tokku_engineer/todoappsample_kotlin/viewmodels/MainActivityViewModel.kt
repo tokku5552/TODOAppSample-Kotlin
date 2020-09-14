@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2020 tokku5552
+ *
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/mit-license.php
+ *
+ */
+
 package tech.tokku_engineer.todoappsample_kotlin.viewmodels
 
 import android.util.Log
@@ -9,7 +17,6 @@ import tech.tokku_engineer.todoappsample_kotlin.models.TodoItem
 import tech.tokku_engineer.todoappsample_kotlin.utils.Event
 import tech.tokku_engineer.todoappsample_kotlin.views.TodoItemDetailFragment
 import java.text.FieldPosition
-
 
 /**
  * Fragmentの生成、遷移を管理する
@@ -30,9 +37,6 @@ class MainActivityViewModel : ViewModel() {
         showFragment(TodoItemDetailFragment.newInstance())
     }
 
-    //FragmentからFragmentへの移動を伴うアクションについて、画面遷移のみ操作
-    //一覧画面でアイテムがクリックされた時の画面遷移
-
     //詳細画面で保存が押された時の画面遷移
     fun showFragment(fragment: Fragment, backStack: Boolean = true, tag: String? = null) {
         _navigateToFragment.value = Event(FragmentNavigationRequest(fragment, backStack, tag))
@@ -44,7 +48,6 @@ class MainActivityViewModel : ViewModel() {
         selectedItem = todoItem
         showFragment(TodoItemDetailFragment.newInstance())
     }
-
 }
 
 data class FragmentNavigationRequest(

@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2020 tokku5552
+ *
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/mit-license.php
+ *
+ */
+
 package tech.tokku_engineer.todoappsample_kotlin.viewmodels
 
 import androidx.lifecycle.ViewModel
@@ -36,8 +44,9 @@ class TodoItemDetailFragmentViewModel : ViewModel() {
         //通知かなんかだす
     }
 
-    //TodoItemを削除する
-    fun deleteTask() {
-
+    // realmの解放
+    override fun onCleared() {
+        super.onCleared()
+        realm.close()
     }
 }

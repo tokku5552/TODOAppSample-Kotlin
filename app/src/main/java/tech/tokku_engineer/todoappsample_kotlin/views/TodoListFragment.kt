@@ -44,20 +44,24 @@ class TodoListFragment : Fragment() {
     }
 
     /**
-     * ActivityCreatedでオブザーブの処理を行う
+     * ActivityCreatedでbindingやリスナーのセットを行う
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "called onActivityCreated")
 
+        // adapterのバインド処理
         val adapter = TodoItemAdapter(todoListFragmentViewModel)
         binding.list.adapter = adapter
+
+        //TodoItemをクリックしたときに詳細画面を表示する
         adapter.setOnItemClickListener(object : TodoItemAdapter.OnItemClickListener {
             override fun onItemClickListener(todoItem: TodoItem, position: Int) {
                 Log.d(TAG, "called onItemClickListener")
                 mainActivityViewModel.todoItemClicked(todoItem)
             }
         })
+        // TodoItemを長押ししたときは、TodoItemを削除する
         adapter.setOnLongItemClickListener(object : TodoItemAdapter.OnLongItemClickListener {
             override fun onLongItemClickListener(todoItem: TodoItem, position: Int): Boolean {
                 Log.d(TAG, "called onLongItemClickListener")
@@ -65,8 +69,7 @@ class TodoListFragment : Fragment() {
                 return true
             }
         })
-
-
+        // checkBoxの状態を変更する
         adapter.setOnCheckBoxClickListener(object : TodoItemAdapter.OnCheckBoxClickListener {
             override fun onCheckBoxClickListener(todoItem: TodoItem, position: Int) {
                 Log.d(TAG, "called onCheckBoxClickListener")
@@ -74,14 +77,11 @@ class TodoListFragment : Fragment() {
                 todoListFragmentViewModel.updateUI()
             }
         })
-
+        // FABを押したら新規作成を行う
         binding.floatingActionButton.setOnClickListener {
             Log.d(TAG, "FAB listener clicked")
             mainActivityViewModel.createTask()
         }
-
-        //一覧画面でアイテムがクリックされた時
-
         //画面の更新
         todoListFragmentViewModel.updateUI()
     }

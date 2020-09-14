@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2020 tokku5552
+ *
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/mit-license.php
+ *
+ */
+
 package tech.tokku_engineer.todoappsample_kotlin
 
 import android.util.Log
