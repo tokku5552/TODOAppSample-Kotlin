@@ -6,7 +6,7 @@ A sample Todo App with MVVM
 ![Screenshot showing TODOAppSample-Kotlin for TodoItemDetail](docs/images/demo_detail.png "Demo TodoItem Detail")
  
 # Libraries
- - Realm
+ - Realm 2.1.1
  - DataBinding
  
 # License
